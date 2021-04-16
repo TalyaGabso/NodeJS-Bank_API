@@ -23,7 +23,7 @@ const addNewUser = (req, res) => {
 	// response
 	else bankJson.users.push({ id, cash: 0, credit: 0 });
 	const newData = JSON.stringify(bankJson);
-	fs.writeFileSync("./src/config/users.json", newData);
+	fs.writeFileSync("./src/config/bank.json", newData);
 	res.status(200).send({ success: "new user was added" });
 };
 

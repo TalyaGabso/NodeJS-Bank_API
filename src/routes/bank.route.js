@@ -1,6 +1,9 @@
-const express= require ('express');
+const express = require("express");
 const router = express.Router();
+const bankController = require("../controllers/bank.controller");
 
-router.get().post().put().delete();
+router
+	.put("/deposit/:id", bankController.deposit)
+	.put("/update-credit/:id", bankController.updateCredit);
 
-module.exports=router
+module.exports = router;
