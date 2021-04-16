@@ -1,11 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
-      "cash": 0,
-      "credit": 0
-    },
-    {
       "id": 123456789,
       "cash": 0,
       "credit": 0

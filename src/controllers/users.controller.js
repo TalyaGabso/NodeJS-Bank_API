@@ -1,5 +1,5 @@
 const fs = require("fs");
-const usersJson = require("../config/users.json");
+const bankJson = require("../config/bank.json");
 
 // add users to the bank, each user has : passport id, cash (default 0), credit(default0)
 const addNewUser = (req, res) => {
@@ -10,7 +10,7 @@ const addNewUser = (req, res) => {
 	if (!id) {
 		//didnt enter an id
 		return res.status(200).json({ error: "Please Enter a Passport Id" });
-	} else if (usersJson.users.find((user) => user.id == id)) {
+	} else if (bankJson.users.find((user) => user.id == id)) {
 		//user already exist in the database
 		return res.status(200).json({ error: "User already axist in the database" });
 	} else if (String(req.body.id).length !== 9) {
@@ -21,22 +21,22 @@ const addNewUser = (req, res) => {
 		return res.status(200).json({ error: "Please Enter a Valid Passport Id" });
 	}
 	// response
-	else usersJson.users.push({ id, cash: 0, credit: 0 });
-	const newData = JSON.stringify(usersJson);
+	else bankJson.users.push({ id, cash: 0, credit: 0 });
+	const newData = JSON.stringify(bankJson);
 	fs.writeFileSync("./src/config/users.json", newData);
 	res.status(200).send({ success: "new user was added" });
 };
 
 //show all users
 const getAllUsers = (req, res) => {
-	res.status(200).json({ users: usersJson.users });
+	res.status(200).json({ users: bankJson.users });
 };
 
 // show a particular user details
 const getUser = (req, res) => {
 	// input
 	const { id } = req.params;
-	const currentUserData = usersJson.users.find((user) => user.id == id);
+	const currentUserData = bankJson.users.find((user) => user.id == id);
 	//----------vallidations----------//
 	if (!currentUserData) {
 		if (id.length !== 9) {
