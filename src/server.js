@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const port =8001;
+const port =8080;
 
 const bankRoute = require('./routes/bank.route');
 const userRoute = require('./routes/users.route');
